@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  backend-foundation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install API Gateway
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e "apps/api-gateway[dev]"
+      - name: Install Realtime Gateway
+        run: |
+          pip install -e "apps/realtime-gateway[dev]"
+      - name: Lint API Gateway
+        run: |
+          cd apps/api-gateway
+          python -m ruff check src tests
+      - name: Run API Gateway Tests
+        run: |
+          cd apps/api-gateway
+          pytest
+      - name: Run Realtime Gateway Tests
+        run: |
+          cd apps/realtime-gateway
+          pytest
+
+  frontend-foundation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: apps/web/package.json
+      - name: Install Web Dependencies
+        run: |
+          cd apps/web
+          npm install
+      - name: Type Check Web App
+        run: |
+          cd apps/web
+          npm run lint

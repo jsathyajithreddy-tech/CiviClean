@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "smart-city-shared-kernel"
+version = "0.1.0"
+description = "Shared contracts and primitives for Agentic Smart City Brain services."
+requires-python = ">=3.12"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]

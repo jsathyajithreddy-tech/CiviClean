@@ -1,0 +1,17 @@
+fastapi<1.0.0,>=0.115.0
+uvicorn[standard]<1.0.0,>=0.30.0
+pydantic<3.0.0,>=2.8.0
+pydantic-settings<3.0.0,>=2.3.0
+dependency-injector<5.0.0,>=4.41.0
+sqlalchemy<3.0.0,>=2.0.31
+alembic<2.0.0,>=1.13.2
+asyncpg<1.0.0,>=0.29.0
+redis<6.0.0,>=5.0.7
+httpx<1.0.0,>=0.27.0
+email-validator<3.0.0,>=2.2.0
+
+[dev]
+pytest<9.0.0,>=8.3.0
+pytest-asyncio<1.0.0,>=0.23.8
+mypy<2.0.0,>=1.11.0
+ruff<1.0.0,>=0.5.3
